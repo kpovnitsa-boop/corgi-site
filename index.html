@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <!-- Служебная информация о странице: кодировка, адаптивность, название во вкладке -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal Fox Smile — питомник вельш-корги пемброк</title>
+  <meta name="description" content="Питомник вельш-корги пемброк Royal Fox Smile. Щенки с документами РКФ, прививками и поддержкой после переезда.">
+
+  <!-- Шрифты из Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Наши стили -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== ШАПКА ===== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#top" class="logo">
+        <span class="logo__icon" aria-hidden="true">🐾</span>
+        <span class="logo__text">ROYAL FOX SMILE</span>
+      </a>
+
+      <nav class="nav" aria-label="Основное меню">
+        <a href="#puppies">Щенки</a>
+        <a href="#parents">Родители</a>
+        <a href="#about">О нас</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <a href="#contacts" class="btn btn--red header__btn">Записаться на просмотр</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== ПЕРВЫЙ ЭКРАН ===== -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <span class="tag">Питомник вельш-корги пемброк · [Город]</span>
+          <h1 class="hero__title">Пушистый друг ждёт вас</h1>
+          <p class="hero__lead">Растим здоровых и общительных щенков в домашних условиях. Документы РКФ, прививки и поддержка после переезда.</p>
+          <div class="hero__buttons">
+            <a href="#puppies" class="btn btn--orange">Выбрать щенка</a>
+            <a href="#contacts" class="btn btn--outline">Задать вопрос</a>
+          </div>
+          <ul class="hero__trust">
+            <li>Метрика РКФ</li>
+            <li>Прививки</li>
+            <li>Доставка</li>
+          </ul>
+        </div>
+
+        <!-- Фото корги: положите файл в папку images и назовите corgi.png — он появится в круге сам -->
+        <div class="hero__photo" role="img" aria-label="Щенок вельш-корги пемброк"></div>
+      </div>
+    </section>
+
+    <!-- ===== ЦИФРЫ ===== -->
+    <!-- Замените значения в квадратных скобках на настоящие -->
+    <section class="stats" aria-label="Питомник в цифрах">
+      <div class="container">
+        <ul class="stats__list">
+          <li class="stats__item">
+            <strong class="stats__number">[XX]</strong>
+            <span class="stats__label">лет с породой</span>
+          </li>
+          <li class="stats__item">
+            <strong class="stats__number">[XXX+]</strong>
+            <span class="stats__label">щенков в семьях</span>
+          </li>
+          <li class="stats__item">
+            <strong class="stats__number">[XX]</strong>
+            <span class="stats__label">титулов</span>
+          </li>
+          <li class="stats__item">
+            <strong class="stats__number">[XX]</strong>
+            <span class="stats__label">городов</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== СВОБОДНЫЕ ЩЕНКИ ===== -->
+    <section class="section section--puppies" id="puppies">
+      <div class="container">
+        <div class="section__top">
+          <div class="section__head">
+            <p class="section__label">НАШИ МАЛЫШИ</p>
+            <h2 class="section__title">Свободные щенки</h2>
+          </div>
+
+          <!-- Фильтр: как он работает, написано в js/main.js -->
+          <div class="filter" aria-label="Показать щенков">
+            <button type="button" class="chip is-active" data-filter="all" aria-pressed="true">Все</button>
+            <button type="button" class="chip" data-filter="boy" aria-pressed="false">Мальчики</button>
+            <button type="button" class="chip" data-filter="girl" aria-pressed="false">Девочки</button>
+          </div>
+        </div>
+
+        <div class="puppies">
+
+          <!-- Карточка щенка. Чтобы добавить щенка, скопируйте весь блок article целиком.
+               data-gender нужен фильтру: boy — мальчик, girl — девочка. -->
+          <article class="puppy" data-gender="boy">
+            <!-- Когда появится фото, замените этот div на:
+                 <img class="puppy__photo" src="images/puppy-1.jpg" alt="Щенок вельш-корги [Кличка]"> -->
+            <div class="puppy__photo puppy__photo--empty">Фото щенка</div>
+            <div class="puppy__body">
+              <div class="puppy__top">
+                <h3 class="puppy__name">[Кличка]</h3>
+                <p class="puppy__price">[Цена] ₽</p>
+              </div>
+              <ul class="puppy__facts">
+                <li>Мальчик</li>
+                <li>[Окрас]</li>
+                <li>[2 мес.]</li>
+              </ul>
+              <span class="puppy__status">Свободен</span>
+              <a href="#contacts" class="btn btn--outline puppy__btn">Подробнее</a>
+            </div>
+          </article>
+
+          <article class="puppy" data-gender="girl">
+            <div class="puppy__photo puppy__photo--empty">Фото щенка</div>
+            <div class="puppy__body">
+              <div class="puppy__top">
+                <h3 class="puppy__name">[Кличка]</h3>
+                <p class="puppy__price">[Цена] ₽</p>
+              </div>
+              <ul class="puppy__facts">
+                <li>Девочка</li>
+                <li>[Окрас]</li>
+                <li>[2 мес.]</li>
+              </ul>
+              <span class="puppy__status">Свободна</span>
+              <a href="#contacts" class="btn btn--outline puppy__btn">Подробнее</a>
+            </div>
+          </article>
+
+          <article class="puppy" data-gender="boy">
+            <div class="puppy__photo puppy__photo--empty">Фото щенка</div>
+            <div class="puppy__body">
+              <div class="puppy__top">
+                <h3 class="puppy__name">[Кличка]</h3>
+                <p class="puppy__price">[Цена] ₽</p>
+              </div>
+              <ul class="puppy__facts">
+                <li>Мальчик</li>
+                <li>[Окрас]</li>
+                <li>[2 мес.]</li>
+              </ul>
+              <span class="puppy__status">Свободен</span>
+              <a href="#contacts" class="btn btn--outline puppy__btn">Подробнее</a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Отдельной страницы со всеми щенками пока нет, поэтому кнопка ведёт к началу блока -->
+        <div class="puppies__more">
+          <a href="#puppies" class="btn btn--outline-dark">Все щенки →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== РОДИТЕЛИ ===== -->
+    <section class="section section--parents" id="parents">
+      <div class="container">
+        <h2 class="section__title section--parents__title">Родители</h2>
+
+        <div class="parents">
+
+          <article class="parent">
+            <!-- Когда появится фото, замените этот div на:
+                 <img class="parent__photo" src="images/father.jpg" alt="Вельш-корги [Кличка], папа щенков"> -->
+            <div class="parent__photo parent__photo--empty">Фото</div>
+            <div class="parent__info">
+              <p class="parent__role">ПАПА</p>
+              <h3 class="parent__name">[Кличка по родословной]</h3>
+              <p class="parent__details">[Титулы] · [Тесты здоровья]</p>
+            </div>
+          </article>
+
+          <article class="parent">
+            <div class="parent__photo parent__photo--empty">Фото</div>
+            <div class="parent__info">
+              <p class="parent__role">МАМА</p>
+              <h3 class="parent__name">[Кличка по родословной]</h3>
+              <p class="parent__details">[Титулы] · [Тесты здоровья]</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== О ПИТОМНИКЕ ===== -->
+    <section class="section section--about" id="about">
+      <div class="container about">
+
+        <!-- Когда появятся фото, замените каждый div на img с теми же классами, например:
+             <img class="about__photo about__photo--tall" src="images/about-1.jpg" alt="Заводчик с собаками"> -->
+        <div class="about__photos">
+          <div class="about__photo about__photo--tall about__photo--empty">Заводчик с собаками</div>
+          <div class="about__photo about__photo--empty">Дом / вольер</div>
+          <div class="about__photo about__photo--empty">с [XXXX] года</div>
+        </div>
+
+        <div class="about__text">
+          <h2 class="section__title">Наш подход</h2>
+          <p class="about__lead">[2–3 предложения: как начали, почему корги, как растите и социализируете щенков.]</p>
+          <ul class="about__list">
+            <li>[Пункт преимущества 1]</li>
+            <li>[Пункт преимущества 2]</li>
+            <li>[Пункт преимущества 3]</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== ГАЛЕРЕЯ ===== -->
+    <section class="section section--gallery" id="gallery">
+      <div class="container">
+        <h2 class="section__title section--gallery__title">Жизнь в питомнике</h2>
+
+        <!-- Когда появятся фото, замените каждый div на img с теми же классами, например:
+             <img class="gallery__photo gallery__photo--big" src="images/gallery-1.jpg" alt="Щенки корги играют во дворе"> -->
+        <div class="gallery">
+          <div class="gallery__photo gallery__photo--big gallery__photo--empty">Большое фото</div>
+          <div class="gallery__photo gallery__photo--empty">Фото</div>
+          <div class="gallery__photo gallery__photo--empty">Фото</div>
+          <div class="gallery__photo gallery__photo--empty">Фото</div>
+          <div class="gallery__photo gallery__photo--empty">Фото</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ОТЗЫВЫ ===== -->
+    <section class="section section--reviews" id="reviews">
+      <div class="container">
+        <h2 class="section__title section--reviews__title">Наши выпускники дома</h2>
+
+        <div class="reviews">
+
+          <!-- Карточка отзыва. Чтобы добавить отзыв, скопируйте весь блок article целиком. -->
+          <article class="review">
+            <!-- Когда появится фото, замените этот div на:
+                 <img class="review__photo" src="images/review-1.jpg" alt="Корги [Кличка] в новой семье"> -->
+            <div class="review__photo review__photo--empty">Корги в новой семье</div>
+            <p class="review__text">[Текст отзыва владельца: 2–3 предложения о щенке и питомнике.]</p>
+            <div class="review__author">
+              <p class="review__name">[Имя владельца]</p>
+              <p class="review__place">[Кличка, город]</p>
+            </div>
+          </article>
+
+          <article class="review">
+            <div class="review__photo review__photo--empty">Корги в новой семье</div>
+            <p class="review__text">[Текст отзыва владельца: 2–3 предложения о щенке и питомнике.]</p>
+            <div class="review__author">
+              <p class="review__name">[Имя владельца]</p>
+              <p class="review__place">[Кличка, город]</p>
+            </div>
+          </article>
+
+          <article class="review">
+            <div class="review__photo review__photo--empty">Корги в новой семье</div>
+            <p class="review__text">[Текст отзыва владельца: 2–3 предложения о щенке и питомнике.]</p>
+            <div class="review__author">
+              <p class="review__name">[Имя владельца]</p>
+              <p class="review__place">[Кличка, город]</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section section--faq" id="faq">
+      <div class="container faq">
+        <div class="faq__head">
+          <h2 class="section__title faq__title">Частые вопросы</h2>
+          <p class="faq__note">Не нашли ответ? <a href="#contacts">Напишите нам.</a></p>
+        </div>
+
+        <!-- details и summary — готовый элемент браузера: открывается по клику без JavaScript.
+             Чтобы добавить вопрос, скопируйте блок details целиком. Ответы замените на настоящие. -->
+        <div class="faq__list">
+          <details class="question">
+            <summary>Сколько стоит щенок? <span class="question__icon" aria-hidden="true">+</span></summary>
+            <p class="question__answer">[Ответ на вопрос]</p>
+          </details>
+
+          <details class="question">
+            <summary>Как забронировать щенка? <span class="question__icon" aria-hidden="true">+</span></summary>
+            <p class="question__answer">[Ответ на вопрос]</p>
+          </details>
+
+          <details class="question">
+            <summary>Во сколько щенок переезжает? <span class="question__icon" aria-hidden="true">+</span></summary>
+            <p class="question__answer">[Ответ на вопрос]</p>
+          </details>
+
+          <details class="question">
+            <summary>Какие документы я получу? <span class="question__icon" aria-hidden="true">+</span></summary>
+            <p class="question__answer">[Ответ на вопрос]</p>
+          </details>
+
+          <details class="question">
+            <summary>Есть ли доставка в другой город? <span class="question__icon" aria-hidden="true">+</span></summary>
+            <p class="question__answer">[Ответ на вопрос]</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== КОНТАКТЫ ===== -->
+    <section class="section section--contacts" id="contacts">
+      <div class="container">
+        <div class="contact">
+
+          <div class="contact__info">
+            <h2 class="contact__title">Приезжайте знакомиться</h2>
+            <p class="contact__lead">Напишите нам — расскажем о щенках и договоримся о встрече.</p>
+            <p class="contact__line">[Город, район]</p>
+          </div>
+
+          <!-- Замените ВАШ_ЛОГИН и ВАША_ССЫЛКА на настоящие, иначе кнопки не откроют ваш чат -->
+          <div class="messengers">
+            <p class="messengers__title">Выберите, где удобнее</p>
+            <a class="btn messengers__btn messengers__btn--main" href="https://t.me/ВАШ_ЛОГИН" target="_blank" rel="noopener">Написать в Telegram</a>
+            <a class="btn btn--outline messengers__btn" href="ВАША_ССЫЛКА_НА_MAX" target="_blank" rel="noopener">Написать в Max</a>
+            <a class="btn btn--outline messengers__btn" href="tel:+79546984365">Позвонить: +7 9546984365</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== ПОДВАЛ ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#top" class="footer__logo">ROYAL FOX SMILE</a>
+      <p class="footer__text">Питомник вельш-корги · РКФ · [Соцсети]</p>
+      <p class="footer__copy">© 2026</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

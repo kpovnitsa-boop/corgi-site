@@ -1,0 +1,510 @@
+/* =========================================================
+   1. ПЕРЕМЕННЫЕ — цвета, шрифты, размеры (значения из макета Figma).
+   Меняете цвет здесь — он меняется на всём сайте.
+   ========================================================= */
+:root {
+  --bg: #F7F1EA;         /* кремовый фон */
+  --sand: #EBDDCD;       /* песочный фон первого экрана и заглушек фото */
+  --red: #711919;        /* фирменный бордовый */
+  --red-dark: #4A0E0E;
+  --orange: #DB8744;     /* оранжевый акцент (кнопки) */
+  --card: #FFFBF6;       /* фон карточек */
+  --chip: #E3E3E3;       /* серые метки */
+  --placeholder: #D4D4D4; /* круг, пока нет фото корги */
+  --ink: #222222;        /* основной текст */
+  --ink-soft: #4A4A4A;   /* текст потише */
+  --muted: #777777;      /* второстепенный текст */
+  --chocolate: #2A1212;  /* тёмная активная метка */
+  --brown: #A0522D;      /* подписи «ПАПА» и «МАМА» */
+  --about-bg: #F1E4D4;   /* фон блока «О питомнике» */
+  --about-photo: #E2CFBA; /* заглушки фото в блоке «О питомнике» */
+  --review-card: #F2F2F2; /* фон карточек отзывов */
+  --form-btn: #E39A5B;   /* кнопка «Написать в Telegram» */
+  --cream: #FFF3E6;      /* светлый текст на бордовом */
+
+  --font-body: 'Manrope', sans-serif;                /* в макете Vela Sans, но он не загрузился из Google Fonts */
+  --font-title: 'Montserrat', sans-serif;            /* заголовки секций */
+
+  --container: 1248px;   /* 1200px контента + поля 24px по бокам */
+  --radius: 24px;        /* скругление карточек */
+}
+
+/* =========================================================
+   2. СБРОС — убираем стандартные отступы браузера
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+body, h1, h2, h3, p, ul, figure { margin: 0; padding: 0; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+
+html { scroll-behavior: smooth; }           /* плавная прокрутка к якорям */
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  font-size: 16px;
+  line-height: 1.375;
+}
+
+/* Контейнер — центрирует контент и даёт поля по бокам */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* =========================================================
+   3. ОБЩИЕ ЭЛЕМЕНТЫ — кнопки, метки
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 16px;
+  white-space: nowrap;
+  transition: transform .2s, background-color .2s;
+  cursor: pointer;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn--orange      { background: var(--orange); color: #fff; }
+.btn--red         { background: var(--red); color: #fff; }
+.btn--red:hover   { background: var(--red-dark); }
+.btn--outline     { border: 1.5px solid var(--red); color: var(--red); }
+.btn--outline-dark { border: 1.5px solid var(--ink-soft); color: var(--ink); }
+
+.tag {
+  display: inline-block;
+  background: var(--chip);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+
+/* =========================================================
+   4. ШАПКА
+   ========================================================= */
+.header {
+  position: sticky;                 /* шапка прилипает к верху при прокрутке */
+  top: 0;
+  z-index: 10;
+  background: rgba(247, 241, 234, .94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--sand);
+}
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 23px;
+  padding-bottom: 23px;
+}
+.logo { display: flex; align-items: center; gap: 10px; color: var(--red); white-space: nowrap; }
+.logo__icon { font-size: 24px; }
+.logo__text { font-weight: 800; font-size: 16px; letter-spacing: .04em; }
+
+.nav { display: flex; gap: 28px; font-weight: 500; font-size: 15px; white-space: nowrap; }
+.nav a:hover { color: var(--red); }
+
+/* =========================================================
+   5. ПЕРВЫЙ ЭКРАН
+   ========================================================= */
+.hero { background: var(--sand); padding: 80px 0; }
+.hero__inner {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+}
+.hero__text { flex: 1; display: flex; flex-direction: column; gap: 26px; align-items: flex-start; }
+
+.hero__title {
+  font-weight: 800;
+  font-size: 70px;
+  line-height: 1.15;
+  max-width: 624px;
+}
+.hero__lead { font-size: 20px; color: var(--muted); }
+.hero__buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.hero__trust { display: flex; flex-wrap: wrap; gap: 24px; font-weight: 500; font-size: 15px; color: var(--ink-soft); }
+.hero__trust li::before { content: "✓ "; }
+
+/* Круг с фото. Пока файла нет, виден серый фон макета */
+.hero__photo {
+  flex-shrink: 0;
+  width: 520px;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: var(--placeholder) url("../images/corgi.png") center / cover no-repeat;
+}
+
+/* =========================================================
+   6. ЦИФРЫ — бордовая полоса
+   ========================================================= */
+.stats { background: var(--red); color: var(--cream); padding: 56px 0; }
+.stats__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);    /* 4 равные колонки */
+}
+.stats__item { display: flex; flex-direction: column; gap: 6px; }
+.stats__number { font-weight: 800; font-size: 44px; line-height: 60px; color: var(--orange); }
+.stats__label { font-size: 16px; }
+
+/* =========================================================
+   7. ОБЩЕЕ ДЛЯ БЛОКОВ — отступы и заголовки секций
+   ========================================================= */
+.section { scroll-margin-top: 101px; }      /* чтобы шапка не закрывала заголовок при переходе из меню */
+.section__head { display: flex; flex-direction: column; gap: 12px; }
+.section__label { font-weight: 700; font-size: 13px; color: var(--muted); }
+.section__title { font-family: var(--font-title); font-weight: 700; font-size: 44px; line-height: 54px; }
+
+/* =========================================================
+   8. СВОБОДНЫЕ ЩЕНКИ — фильтр и карточки
+   ========================================================= */
+.section--puppies { padding: 144px 0 118px; }
+.section__top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 23px;
+}
+.filter { display: flex; gap: 8px; }
+.chip {
+  padding: 8px 14px;
+  background: none;
+  border: 1px solid var(--sand);
+  border-radius: 999px;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 13px;
+}
+.chip.is-active { background: var(--chocolate); border-color: var(--chocolate); color: #fff; }
+
+.puppies {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);    /* 3 карточки в ряд */
+  gap: 24px;
+}
+.puppy {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  overflow: hidden;                         /* обрезает фото по скруглённым углам */
+  background: var(--card);
+}
+.puppy[hidden] { display: none; }           /* так фильтр прячет карточку */
+.puppy__photo { width: 100%; height: 260px; object-fit: cover; }
+.puppy__photo--empty {                      /* заглушка, пока нет фото */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sand);
+  color: #8A8A8A;
+  font-weight: 500;
+  font-size: 14px;
+}
+.puppy__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 24px;
+}
+.puppy__top { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-weight: 700; }
+.puppy__name { font-size: 22px; }
+.puppy__price { font-size: 18px; color: var(--ink-soft); }
+.puppy__facts { display: flex; flex-wrap: wrap; gap: 8px; font-weight: 700; font-size: 13px; color: var(--ink-soft); }
+.puppy__facts li { padding: 8px 14px; background: var(--chip); border-radius: 999px; }
+.puppy__status { padding: 8px 14px; background: var(--ink-soft); border-radius: 999px; color: #fff; font-weight: 700; font-size: 13px; }
+.puppy__btn { width: 100%; color: var(--ink); }
+
+.puppies__more { display: flex; justify-content: center; margin-top: 23px; }
+
+/* =========================================================
+   9. РОДИТЕЛИ — две карточки: фото слева, текст справа
+   ========================================================= */
+.section--parents { padding: 40px 0; }
+.section--parents__title { margin-bottom: 23px; }
+.parents {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);    /* 2 карточки в ряд */
+  gap: 24px;
+}
+.parent {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px;
+  background: var(--card);
+  border-radius: var(--radius);
+}
+.parent__photo { flex-shrink: 0; width: 180px; height: 180px; border-radius: 16px; object-fit: cover; }
+.parent__photo--empty {                     /* заглушка, пока нет фото */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sand);
+  color: #8A8A8A;
+  font-weight: 500;
+  font-size: 14px;
+}
+.parent__info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.parent__role { font-weight: 700; font-size: 13px; color: var(--brown); }
+.parent__name { font-weight: 700; font-size: 22px; color: var(--ink); }
+.parent__details { font-size: 15px; color: var(--muted); }
+
+/* =========================================================
+   10. О ПИТОМНИКЕ — фото слева, текст справа
+   ========================================================= */
+.section--about { background: var(--about-bg); padding: 100px 0; }
+.about {
+  display: grid;
+  grid-template-columns: 576px 1fr;         /* фото фиксированной ширины, текст занимает остальное */
+  align-items: center;
+  column-gap: 64px;
+}
+.about__photos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 202px);
+  gap: 16px;
+}
+.about__photo { width: 100%; height: 100%; border-radius: 16px; object-fit: cover; }
+.about__photo--tall { grid-row: span 2; }   /* большое фото занимает две строки */
+.about__photo--empty {                      /* заглушка, пока нет фото */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: var(--about-photo);
+  color: #8A8A8A;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+}
+.about__text { display: flex; flex-direction: column; gap: 22px; }
+.about__lead { font-size: 18px; color: var(--muted); }
+.about__list { display: flex; flex-direction: column; gap: 22px; font-weight: 700; font-size: 16px; }
+.about__list li { display: flex; align-items: center; gap: 12px; }
+.about__list li::before {                   /* бордовый кружок перед пунктом */
+  content: "";
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+/* =========================================================
+   11. ГАЛЕРЕЯ — большое фото слева и четыре маленьких справа
+   ========================================================= */
+.section--gallery { padding: 100px 0; }
+.section--gallery__title { margin-bottom: 40px; }
+.gallery {
+  display: grid;
+  grid-template-columns: 592fr 288fr 288fr; /* большая колонка и две маленькие */
+  grid-template-rows: repeat(2, 220px);
+  gap: 16px;
+}
+.gallery__photo { width: 100%; height: 100%; border-radius: 16px; object-fit: cover; }
+.gallery__photo--big { grid-row: span 2; }  /* большое фото занимает две строки */
+.gallery__photo--empty {                    /* заглушка, пока нет фото */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sand);
+  color: #8A8A8A;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* =========================================================
+   12. ОТЗЫВЫ — три карточки
+   ========================================================= */
+.section--reviews { background: #fff; padding: 40px 0; }
+.section--reviews__title { margin-bottom: 40px; }
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);    /* 3 карточки в ряд */
+  gap: 24px;
+}
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background: var(--review-card);
+  border-radius: var(--radius);
+}
+.review__photo { width: 100%; height: 190px; border-radius: 16px; object-fit: cover; }
+.review__photo--empty {                     /* заглушка, пока нет фото */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sand);
+  color: #8A8A8A;
+  font-weight: 500;
+  font-size: 14px;
+}
+.review__text { flex: 1; color: var(--ink-soft); }   /* flex: 1 выравнивает авторов по низу карточек */
+.review__author { display: flex; flex-direction: column; gap: 6px; }
+.review__name { font-weight: 700; }
+.review__place { font-size: 14px; color: var(--muted); }
+
+/* =========================================================
+   13. FAQ — заголовок слева, вопросы справа
+   ========================================================= */
+.section--faq { background: var(--card); padding: 100px 0; }
+.faq {
+  display: grid;
+  grid-template-columns: 380px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 64px;
+}
+.faq__head { display: flex; flex-direction: column; gap: 14px; }
+.faq__title { font-weight: 800; font-size: 48px; line-height: 1; }
+.faq__note { font-size: 17px; color: var(--muted); }
+.faq__note a:hover { color: var(--red); }
+.faq__list { display: flex; flex-direction: column; gap: 12px; }
+
+.question { background: var(--bg); border-radius: 18px; }
+.question summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  list-style: none;                         /* убираем стандартный треугольник */
+}
+.question summary::-webkit-details-marker { display: none; }   /* то же для Safari */
+.question__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  transition: transform .2s;
+}
+.question[open] .question__icon { transform: rotate(45deg); }  /* плюс поворачивается и становится крестиком */
+.question__answer { padding: 0 24px 20px; color: var(--ink-soft); }
+
+/* =========================================================
+   14. КОНТАКТЫ — бордовая карточка: текст слева, кнопки связи справа
+   ========================================================= */
+.section--contacts { background: #fff; padding: 100px 0; }
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 548px;
+  align-items: start;
+  column-gap: 56px;
+  padding: 56px;
+  background: var(--red);
+  border-radius: 36px;
+  color: var(--cream);
+}
+.contact__info { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.contact__title { font-weight: 700; font-size: 40px; }
+.contact__lead { font-size: 18px; }
+.contact__line { font-size: 17px; }
+
+.messengers {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  background: var(--card);
+  border-radius: var(--radius);
+  color: var(--ink);
+}
+.messengers__title { font-weight: 700; font-size: 18px; }
+.messengers__btn { width: 100%; }
+.messengers__btn--main { background: var(--form-btn); color: var(--chocolate); }
+
+/* =========================================================
+   15. ПОДВАЛ
+   ========================================================= */
+.footer { background: var(--chocolate); padding: 40px 0; color: #DDDDDD; }
+.footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.footer__logo { font-weight: 700; color: #fff; }
+.footer__copy { font-size: 15px; }
+
+/* =========================================================
+   16. АДАПТИВ — как сайт выглядит на узких экранах
+   ========================================================= */
+@media (max-width: 1040px) {
+  .nav { display: none; }                   /* меню спрячем в бургер на следующих шагах */
+}
+@media (max-width: 960px) {
+  .hero__inner { flex-direction: column-reverse; }
+  .hero__text { width: 100%; }
+  .hero__title { font-size: 48px; }
+  .stats__list { grid-template-columns: repeat(2, 1fr); row-gap: 32px; }
+  .puppies { grid-template-columns: repeat(2, 1fr); }
+  .section--puppies { padding: 72px 0; }
+  .section__title { font-size: 36px; line-height: 1.2; }
+  .parents { grid-template-columns: 1fr; }
+  .section--about { padding: 64px 0; }
+  .about { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
+  .section--gallery { padding: 64px 0; }
+  .gallery { grid-template-columns: repeat(2, 1fr); grid-template-rows: 320px 220px 220px; }
+  .gallery__photo--big { grid-row: auto; grid-column: span 2; }   /* большое фото теперь на всю ширину */
+  .section--reviews { padding: 64px 0; }
+  .reviews { grid-template-columns: repeat(2, 1fr); }
+  .section--faq { padding: 64px 0; }
+  .faq { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+  .section--contacts { padding: 64px 0; }
+  .contact { grid-template-columns: minmax(0, 1fr); row-gap: 32px; padding: 40px; }
+}
+@media (max-width: 560px) {
+  .header__btn { display: none; }
+  .hero { padding: 40px 0 56px; }
+  .hero__title { font-size: 38px; }
+  .hero__lead { font-size: 17px; }
+  .hero__buttons .btn { width: 100%; }
+  .stats { padding: 40px 0; }
+  .stats__number { font-size: 34px; }
+  .puppies { grid-template-columns: 1fr; }
+  .section--puppies { padding: 56px 0; }
+  .section__title { font-size: 30px; }
+  .parent { flex-direction: column; align-items: flex-start; }   /* на телефоне текст под фото */
+  .parent__photo { width: 100%; height: 240px; }
+  .parent__info { flex: none; }
+  .section--about { padding: 56px 0; }
+  .about__photos { grid-template-rows: repeat(2, 150px); }
+  .section--gallery { padding: 56px 0; }
+  .section--gallery__title { margin-bottom: 24px; }
+  .gallery { grid-template-rows: 220px 150px 150px; }
+  .section--reviews { padding: 56px 0; }
+  .section--reviews__title { margin-bottom: 24px; }
+  .reviews { grid-template-columns: 1fr; }
+  .section--faq { padding: 56px 0; }
+  .faq__title { font-size: 36px; line-height: 1.1; }
+  .question summary { padding: 12px 16px; font-size: 16px; }
+  .question__answer { padding: 0 16px 16px; }
+  .section--contacts { padding: 56px 0; }
+  .contact { padding: 24px 16px 16px; border-radius: var(--radius); }
+  .contact__title { font-size: 30px; line-height: 1.2; }
+  .messengers { padding: 20px 16px; }
+  .messengers__btn { white-space: normal; text-align: center; }
+  .footer__inner { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
