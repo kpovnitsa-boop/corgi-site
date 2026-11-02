@@ -10,7 +10,6 @@
   --orange: #DB8744;     /* оранжевый акцент (кнопки) */
   --card: #FFFBF6;       /* фон карточек */
   --chip: #E3E3E3;       /* серые метки */
-  --placeholder: #D4D4D4; /* круг, пока нет фото корги */
   --ink: #222222;        /* основной текст */
   --ink-soft: #4A4A4A;   /* текст потише */
   --muted: #777777;      /* второстепенный текст */
@@ -138,14 +137,13 @@ body {
 .hero__trust { display: flex; flex-wrap: wrap; gap: 24px; font-weight: 500; font-size: 15px; color: var(--ink-soft); }
 .hero__trust li::before { content: "✓ "; }
 
-/* Круг с фото. Пока файла нет, виден серый фон макета */
+/* Фото корги: без круга и обрезки, вписывается в квадрат 520px как в макете */
 .hero__photo {
   flex-shrink: 0;
   width: 520px;
   max-width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background: var(--placeholder) url("../images/corgi.png") center / cover no-repeat;
+  height: 520px;
+  object-fit: contain;
 }
 
 /* =========================================================
