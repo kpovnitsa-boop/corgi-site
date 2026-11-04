@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "number": "[XX]", "label": "лет с породой" },
+    { "number": "[XXX+]", "label": "щенков в семьях" },
+    { "number": "[XX]", "label": "титулов" },
+    { "number": "[XX]", "label": "городов" }
+  ]
+}
