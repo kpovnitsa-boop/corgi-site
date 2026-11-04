@@ -10,9 +10,10 @@ site_url: https://kpovnitsa-boop.github.io/corgi-site/
 display_url: https://kpovnitsa-boop.github.io/corgi-site/
 
 # Куда складываются загруженные фото и какой путь к ним пишется в данные
-# (сайт сам уберёт «/» в начале, чтобы фото нашлось в папке сайта)
-media_folder: images/puppies
-public_folder: /images/puppies
+# (сайт сам уберёт «/» в начале, чтобы фото нашлось в папке сайта).
+# Фото щенков, загруженные раньше, лежат в images/puppies и продолжают работать
+media_folder: images/uploads
+public_folder: /images/uploads
 
 # Фото при загрузке сжимаются и переводятся в WebP прямо в браузере.
 # Так работают и фото с iPhone в формате HEIC, и сайт грузится быстрее
@@ -54,3 +55,111 @@ collections:
                 widget: select
                 options: [Свободен, Свободна, Забронирован, Забронирована]
               - { name: photo, label: Фото, widget: image, required: false }
+
+  - name: site
+    label: Блоки сайта
+    files:
+      - name: contacts
+        label: Контакты
+        file: data/contacts.json
+        fields:
+          - { name: telegram, label: Telegram, widget: string, required: false, hint: "Логин без @, например royalfoxsmile. Пусто — кнопка скрыта" }
+          - { name: max, label: Max, widget: string, required: false, hint: "Полная ссылка на профиль или чат, начинается с https://. Пусто — кнопка скрыта" }
+          - { name: phone, label: Телефон, widget: string, required: false, hint: "Как показывать на сайте, например +7 900 000-00-00. Пусто — кнопка скрыта" }
+          - { name: city, label: "Город, район", widget: string, required: false, hint: "Город до запятой покажется и на первом экране" }
+          - { name: socials, label: Соцсети в подвале, widget: string, required: false, hint: "Например: VK · Telegram-канал" }
+
+      - name: stats
+        label: Цифры
+        file: data/stats.json
+        fields:
+          - name: items
+            label: Цифры
+            label_singular: цифру
+            widget: list
+            max: 4
+            summary: "{{fields.number}} {{fields.label}}"
+            fields:
+              - { name: number, label: Число, widget: string, hint: "Например: 8 или 120+" }
+              - { name: label, label: Подпись, widget: string }
+
+      - name: parents
+        label: Родители
+        file: data/parents.json
+        fields:
+          - name: items
+            label: Родители
+            label_singular: родителя
+            widget: list
+            summary: "{{fields.role}}: {{fields.name}}"
+            fields:
+              - name: role
+                label: Кто
+                widget: select
+                options: [ПАПА, МАМА]
+              - { name: name, label: Кличка по родословной, widget: string }
+              - { name: details, label: "Титулы и тесты", widget: string, required: false }
+              - { name: photo, label: Фото, widget: image, required: false }
+
+      - name: about
+        label: О питомнике
+        file: data/about.json
+        fields:
+          - { name: title, label: Заголовок, widget: string }
+          - { name: text, label: Текст, widget: text }
+          - name: points
+            label: Пункты
+            label_singular: пункт
+            widget: list
+            field: { name: point, label: Пункт, widget: string }
+          - name: photos
+            label: Фото
+            label_singular: фото
+            widget: list
+            max: 3
+            hint: "Первое фото высокое, два других — маленькие справа"
+            fields:
+              - { name: image, label: Фото, widget: image, required: false }
+              - { name: alt, label: Подпись к фото, widget: string, hint: "Коротко, что на фото. Видна, пока фото нет" }
+
+      - name: gallery
+        label: Галерея
+        file: data/gallery.json
+        fields:
+          - name: photos
+            label: Фото
+            label_singular: фото
+            widget: list
+            max: 5
+            hint: "Первое фото большое, остальные четыре — маленькие"
+            fields:
+              - { name: image, label: Фото, widget: image, required: false }
+              - { name: alt, label: Подпись к фото, widget: string, hint: "Коротко, что на фото" }
+
+      - name: reviews
+        label: Отзывы
+        file: data/reviews.json
+        fields:
+          - name: items
+            label: Отзывы
+            label_singular: отзыв
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: text, label: Текст отзыва, widget: text }
+              - { name: name, label: Имя владельца, widget: string }
+              - { name: place, label: "Кличка щенка, город", widget: string, required: false }
+              - { name: photo, label: Фото, widget: image, required: false }
+
+      - name: faq
+        label: Частые вопросы
+        file: data/faq.json
+        fields:
+          - name: items
+            label: Вопросы
+            label_singular: вопрос
+            widget: list
+            summary: "{{fields.question}}"
+            fields:
+              - { name: question, label: Вопрос, widget: string }
+              - { name: answer, label: Ответ, widget: text }
