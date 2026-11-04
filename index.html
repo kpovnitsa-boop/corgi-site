@@ -105,64 +105,10 @@
           </div>
         </div>
 
-        <div class="puppies">
-
-          <!-- Карточка щенка. Чтобы добавить щенка, скопируйте весь блок article целиком.
-               data-gender нужен фильтру: boy — мальчик, girl — девочка. -->
-          <article class="puppy" data-gender="boy">
-            <!-- Когда появится фото, замените этот div на:
-                 <img class="puppy__photo" src="images/puppy-1.jpg" alt="Щенок вельш-корги [Кличка]"> -->
-            <div class="puppy__photo puppy__photo--empty">Фото щенка</div>
-            <div class="puppy__body">
-              <div class="puppy__top">
-                <h3 class="puppy__name">[Кличка]</h3>
-                <p class="puppy__price">[Цена] ₽</p>
-              </div>
-              <ul class="puppy__facts">
-                <li>Мальчик</li>
-                <li>[Окрас]</li>
-                <li>[2 мес.]</li>
-              </ul>
-              <span class="puppy__status">Свободен</span>
-              <a href="#contacts" class="btn btn--outline puppy__btn">Подробнее</a>
-            </div>
-          </article>
-
-          <article class="puppy" data-gender="girl">
-            <div class="puppy__photo puppy__photo--empty">Фото щенка</div>
-            <div class="puppy__body">
-              <div class="puppy__top">
-                <h3 class="puppy__name">[Кличка]</h3>
-                <p class="puppy__price">[Цена] ₽</p>
-              </div>
-              <ul class="puppy__facts">
-                <li>Девочка</li>
-                <li>[Окрас]</li>
-                <li>[2 мес.]</li>
-              </ul>
-              <span class="puppy__status">Свободна</span>
-              <a href="#contacts" class="btn btn--outline puppy__btn">Подробнее</a>
-            </div>
-          </article>
-
-          <article class="puppy" data-gender="boy">
-            <div class="puppy__photo puppy__photo--empty">Фото щенка</div>
-            <div class="puppy__body">
-              <div class="puppy__top">
-                <h3 class="puppy__name">[Кличка]</h3>
-                <p class="puppy__price">[Цена] ₽</p>
-              </div>
-              <ul class="puppy__facts">
-                <li>Мальчик</li>
-                <li>[Окрас]</li>
-                <li>[2 мес.]</li>
-              </ul>
-              <span class="puppy__status">Свободен</span>
-              <a href="#contacts" class="btn btn--outline puppy__btn">Подробнее</a>
-            </div>
-          </article>
-
-        </div>
+        <!-- Карточки щенков рисует js/main.js из файла data/puppies.json.
+             Менять щенков удобнее всего в панели: адрес-сайта/admin/ -->
+        <div class="puppies" id="puppies-list"></div>
+        <p class="puppies__message" id="puppies-message" hidden></p>
 
         <!-- Отдельной страницы со всеми щенками пока нет, поэтому кнопка ведёт к началу блока -->
         <div class="puppies__more">
