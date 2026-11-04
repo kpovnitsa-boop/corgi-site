@@ -1,0 +1,44 @@
+# Настройки панели Sveltia CMS
+
+# Где хранится сайт: панель сохраняет изменения прямо в этот репозиторий на GitHub
+backend:
+  name: github
+  repo: kpovnitsa-boop/corgi-site
+  branch: main
+
+site_url: https://kpovnitsa-boop.github.io/corgi-site/
+display_url: https://kpovnitsa-boop.github.io/corgi-site/
+
+# Куда складываются загруженные фото и какой путь к ним пишется в данные
+media_folder: images/puppies
+public_folder: images/puppies
+
+collections:
+  - name: puppies
+    label: Щенки
+    files:
+      - name: puppies
+        label: Свободные щенки
+        file: data/puppies.json
+        fields:
+          - name: puppies
+            label: Щенки
+            label_singular: щенка
+            widget: list
+            summary: "{{fields.name}} — {{fields.status}}"
+            fields:
+              - { name: name, label: Кличка, widget: string }
+              - name: gender
+                label: Пол
+                widget: select
+                options:
+                  - { label: Мальчик, value: boy }
+                  - { label: Девочка, value: girl }
+              - { name: color, label: Окрас, widget: string, required: false }
+              - { name: age, label: Возраст, widget: string, required: false, hint: "Например: 2 мес." }
+              - { name: price, label: Цена, widget: string, required: false, hint: "Только число, знак ₽ добавится сам" }
+              - name: status
+                label: Статус
+                widget: select
+                options: [Свободен, Свободна, Забронирован, Забронирована]
+              - { name: photo, label: Фото, widget: image, required: false }
