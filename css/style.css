@@ -497,7 +497,88 @@ body {
 .footer__copy { font-size: 15px; }
 
 /* =========================================================
-   16. АДАПТИВ — как сайт выглядит на узких экранах
+   16. СТРАНИЦА ЩЕНКА (puppy.html)
+   ========================================================= */
+.puppy-page { display: flex; flex-direction: column; gap: 40px; padding-top: 32px; padding-bottom: 100px; }
+.breadcrumbs { display: flex; flex-wrap: wrap; gap: 8px; font-weight: 500; font-size: 14px; color: var(--muted); }
+.breadcrumbs a:hover { color: var(--red); }
+.puppy-page__message { font-size: 18px; color: var(--muted); }
+.puppy-page__content { display: flex; flex-direction: column; gap: 40px; }
+
+/* Верх: фото слева, информация справа */
+.puppy-page__top {
+  display: grid;
+  grid-template-columns: 660px minmax(0, 1fr);
+  align-items: start;
+  gap: 56px;
+}
+
+/* Фото и миниатюры */
+.puppy-gallery { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.puppy-gallery__photo { width: 100%; height: 520px; border-radius: var(--radius); object-fit: cover; }
+.puppy-gallery__photo--empty,
+.puppy-gallery__thumb-img--empty {          /* заглушки, пока нет фото */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sand);
+  color: #8A8A8A;
+  font-weight: 500;
+  font-size: 14px;
+}
+.puppy-gallery__thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.puppy-gallery__thumbs:empty { display: none; }
+.puppy-gallery__thumb {
+  height: 110px;
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  background: var(--sand);
+}
+.puppy-gallery__thumb.is-active { border-color: var(--red); }   /* миниатюра фото, которое сейчас открыто */
+.puppy-gallery__thumb-img { width: 100%; height: 100%; object-fit: cover; }
+.puppy-gallery__thumb--video {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* Информация справа */
+.puppy-info { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+.puppy-info__name { font-weight: 700; font-size: 48px; line-height: 1.15; }
+.puppy-info__specs {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+  background: var(--card);
+  border-radius: 20px;
+}
+.puppy-info__specs:empty { display: none; }
+.puppy-info__row { display: flex; justify-content: space-between; gap: 16px; }
+.puppy-info__row dt { color: var(--muted); }
+.puppy-info__row dd { margin: 0; font-weight: 700; text-align: right; }
+.puppy-info__price { font-weight: 700; font-size: 34px; color: var(--ink-soft); }
+.puppy-info__buttons { width: 100%; display: flex; gap: 12px; }
+.puppy-info__buttons .btn { flex: 1; }
+.puppy-info__note { font-size: 14px; color: var(--muted); }
+
+/* Блоки ниже: «О щенке», «Родители», «Другие щенки» */
+.puppy-page__block { display: flex; flex-direction: column; gap: 20px; }
+.puppy-page__title { font-weight: 700; font-size: 32px; }
+.puppy-page__text { font-size: 18px; color: var(--muted); white-space: pre-line; }
+.parents--compact .parent__photo { width: 140px; height: 140px; }
+.parent__more { font-weight: 700; font-size: 15px; color: var(--ink-soft); }
+.parent__more:hover { color: var(--red); }
+
+/* =========================================================
+   17. АДАПТИВ — как сайт выглядит на узких экранах
    ========================================================= */
 @media (max-width: 1040px) {
   .burger { display: flex; }
@@ -522,7 +603,14 @@ body {
   .nav a { padding: 14px 0; border-bottom: 1px solid var(--sand); }
   .nav .nav__btn { border-bottom: none; }
 }
+@media (max-width: 1200px) {
+  .puppy-page__top { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 40px; }
+  .puppy-gallery__photo { height: 440px; }
+  .puppy-gallery__thumb { height: 90px; }
+}
 @media (max-width: 960px) {
+  .puppy-page__top { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .puppy-gallery__photo { height: 460px; }
   .hero__inner { flex-direction: column-reverse; }
   .hero__photo { height: 360px; }
   .hero__text { width: 100%; }
@@ -582,4 +670,21 @@ body {
   .messengers { padding: 20px 16px; }
   .messengers__btn { white-space: normal; text-align: center; }
   .footer__inner { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .puppy-page { gap: 24px; padding-top: 20px; padding-bottom: 56px; }
+  .puppy-page__content { gap: 32px; }
+  .puppy-gallery__photo { height: 300px; }
+  .puppy-gallery__thumbs { gap: 8px; }
+  .puppy-gallery__thumb { height: 64px; border-radius: 10px; }
+  .puppy-gallery__thumb--video { font-size: 13px; }
+  .puppy-info { gap: 16px; }
+  .puppy-info__name { font-size: 34px; }
+  .puppy-info__specs { padding: 20px 16px; }
+  .puppy-info__price { font-size: 28px; }
+  .puppy-info__buttons { flex-direction: column; }
+  .puppy-page__title { font-size: 26px; }
+  .puppy-page__text { font-size: 17px; }
+  .parents--compact .parent { flex-direction: row; align-items: center; }   /* на странице щенка карточки родителей остаются в строку */
+  .parents--compact .parent__photo { width: 100px; height: 100px; }
+  .parents--compact .parent__info { flex: 1; }   /* текст занимает остаток строки и переносится, а не обрезается */
+  .parents--compact .parent__name { font-size: 18px; }
 }
