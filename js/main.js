@@ -1,60 +1,5 @@
-// Здесь «живое» поведение сайта: меню-бургер, блоки из файлов данных и фильтр щенков.
-// Данные лежат в папке data — их меняют в панели (адрес-сайта/admin/).
-// Важно: если открыть index.html двойным щелчком, браузер не даст прочитать файлы данных,
-// поэтому блоки видно только на сайте в интернете или на локальном сервере.
-
-// ===== МЕНЮ-БУРГЕР =====
-const burger = document.querySelector('.burger');
-const nav = document.querySelector('#site-nav');
-
-function setMenuOpen(isOpen) {
-  nav.classList.toggle('is-open', isOpen);
-  burger.setAttribute('aria-expanded', String(isOpen)); // по этому атрибуту CSS рисует крестик
-  burger.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
-}
-
-burger.addEventListener('click', () => {
-  setMenuOpen(!nav.classList.contains('is-open'));
-});
-
-// После выбора пункта меню закрываем его, чтобы оно не закрывало страницу
-nav.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => setMenuOpen(false));
-});
-
-// Клавиша Esc тоже закрывает меню
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') setMenuOpen(false);
-});
-
-// ===== ОБЩИЕ ПОМОЩНИКИ =====
-
-// Создаёт элемент с классом и текстом. textContent безопасен:
-// даже если в данных окажутся теги, они покажутся как обычный текст
-function createElement(tag, className, text) {
-  const element = document.createElement(tag);
-  if (className) element.className = className;
-  if (text) element.textContent = text;
-  return element;
-}
-
-// Фото из панели или заглушка с подписью, если фото ещё нет
-function createPhoto(className, image, alt) {
-  if (image) {
-    const photo = createElement('img', className);
-    photo.src = image.replace(/^\//, ''); // убираем «/» в начале, чтобы путь работал в папке сайта
-    photo.alt = alt || '';
-    photo.loading = 'lazy'; // фото грузится, только когда до него долистали
-    return photo;
-  }
-  const baseClass = className.split(' ')[0];
-  return createElement('div', `${className} ${baseClass}--empty`, alt);
-}
-
-// Загружает файл из папки data. no-cache: всегда берём свежую версию
-function loadData(name) {
-  return fetch(`data/${name}.json`, { cache: 'no-cache' }).then((response) => response.json());
-}
+// Код главной страницы: блоки из файлов данных, фильтр щенков и раскрытие отзывов.
+// Меню, помощники и карточка щенка лежат в common.js — он подключается раньше.
 
 // ===== КОНТАКТЫ =====
 function renderContacts(data) {
@@ -64,7 +9,7 @@ function renderContacts(data) {
   if (heroCity.startsWith('[') && !heroCity.endsWith(']')) heroCity += ']'; // чтобы заглушка «[Город, район]» выглядела аккуратно
   document.querySelector('#hero-city').textContent = heroCity ? ` · ${heroCity}` : '';
   document.querySelector('#contact-city').textContent = city;
-  document.querySelector('#footer-socials').textContent = data.socials ? ` · ${data.socials}` : '';
+  renderFooter(data);
 
   // Telegram: принимаем «name», «@name» или ссылку https://t.me/name
   const telegram = (data.telegram || '').trim().replace(/^https?:\/\/t\.me\//, '').replace(/^@/, '');
@@ -105,37 +50,6 @@ function renderStats(data) {
 // ===== ЩЕНКИ =====
 const puppiesList = document.querySelector('#puppies-list');
 const puppiesMessage = document.querySelector('#puppies-message');
-const genderNames = { boy: 'Мальчик', girl: 'Девочка' };
-
-function createPuppyCard(puppy) {
-  const card = createElement('article', 'puppy');
-  card.dataset.gender = puppy.gender; // нужно фильтру: boy или girl
-  card.append(createPhoto('puppy__photo', puppy.photo, puppy.photo ? `Щенок вельш-корги ${puppy.name}` : 'Фото щенка'));
-
-  const body = createElement('div', 'puppy__body');
-
-  const top = createElement('div', 'puppy__top');
-  top.append(createElement('h3', 'puppy__name', puppy.name));
-  if (puppy.price) {
-    // ₽ добавляем, только если цена написана цифрами, а не словами («по договорённости»)
-    const isNumber = /^[\d\s]+$/.test(puppy.price);
-    top.append(createElement('p', 'puppy__price', isNumber ? `${puppy.price} ₽` : puppy.price));
-  }
-
-  const facts = createElement('ul', 'puppy__facts');
-  [genderNames[puppy.gender], puppy.color, puppy.age].forEach((fact) => {
-    if (fact) facts.append(createElement('li', '', fact));
-  });
-
-  const button = createElement('a', 'btn btn--outline puppy__btn', 'Подробнее');
-  button.href = '#contacts';
-
-  body.append(top, facts);
-  if (puppy.status) body.append(createElement('span', 'puppy__status', puppy.status));
-  body.append(button);
-  card.append(body);
-  return card;
-}
 
 function renderPuppies(data) {
   const puppies = data.puppies || [];
@@ -144,7 +58,7 @@ function renderPuppies(data) {
     puppiesMessage.hidden = false;
     return;
   }
-  puppies.forEach((puppy) => puppiesList.append(createPuppyCard(puppy)));
+  puppies.forEach((puppy, index) => puppiesList.append(createPuppyCard(puppy, index)));
 }
 
 // ===== РОДИТЕЛИ =====
