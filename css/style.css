@@ -229,6 +229,8 @@ body {
 .puppy__status { padding: 8px 14px; background: var(--ink-soft); border-radius: 999px; color: #fff; font-weight: 700; font-size: 13px; }
 .puppy__btn { width: 100%; color: var(--ink); }
 
+.puppies__message { font-size: 18px; color: var(--muted); }
+.puppies__message[hidden] { display: none; }
 .puppies__more { display: flex; justify-content: center; margin-top: 23px; }
 
 /* =========================================================
