@@ -37,6 +37,10 @@ ul { list-style: none; }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; }
+[hidden] { display: none !important; }      /* скрытое атрибутом hidden прячем всегда, даже кнопки */
+
+/* Переносы строк из панели сохраняются в длинных текстах */
+.about__lead, .review__text, .question__answer { white-space: pre-line; }
 
 html { scroll-behavior: smooth; }           /* плавная прокрутка к якорям */
 
@@ -228,7 +232,6 @@ body {
   overflow: hidden;                         /* обрезает фото по скруглённым углам */
   background: var(--card);
 }
-.puppy[hidden] { display: none; }           /* так фильтр прячет карточку */
 .puppy__photo { width: 100%; height: 260px; object-fit: cover; }
 .puppy__photo--empty {                      /* заглушка, пока нет фото */
   display: flex;
@@ -256,7 +259,6 @@ body {
 .puppy__btn { width: 100%; color: var(--ink); }
 
 .puppies__message { font-size: 18px; color: var(--muted); }
-.puppies__message[hidden] { display: none; }
 .puppies__more { display: flex; justify-content: center; margin-top: 23px; }
 
 /* =========================================================
