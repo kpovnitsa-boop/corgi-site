@@ -113,6 +113,32 @@ body {
 
 .nav { display: flex; gap: 28px; font-weight: 500; font-size: 15px; white-space: nowrap; }
 .nav a:hover { color: var(--red); }
+.nav__btn { display: none; }                /* кнопка внутри меню нужна только на телефоне */
+.nowrap { white-space: nowrap; }            /* текст, который нельзя переносить, например номер телефона */
+
+/* Бургер — три полоски. На широких экранах скрыт */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;                              /* 44px — удобный размер для пальца */
+  height: 44px;
+  padding: 0 10px;
+  background: none;
+  border: none;
+}
+.burger span {
+  display: block;
+  height: 2px;
+  background: var(--red);
+  border-radius: 2px;
+  transition: transform .2s, opacity .2s;
+}
+/* Когда меню открыто, полоски складываются в крестик */
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* =========================================================
    5. ПЕРВЫЙ ЭКРАН
@@ -452,10 +478,31 @@ body {
    16. АДАПТИВ — как сайт выглядит на узких экранах
    ========================================================= */
 @media (max-width: 1040px) {
-  .nav { display: none; }                   /* меню спрячем в бургер на следующих шагах */
+  .burger { display: flex; }
+  .header__inner { padding-top: 14px; padding-bottom: 14px; }
+  .header__btn { margin-left: auto; }       /* кнопка прижимается вправо, к бургеру */
+  /* Меню превращается в выпадающую панель под шапкой */
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 24px 24px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--sand);
+    box-shadow: 0 16px 32px rgba(74, 14, 14, .1);
+    font-size: 18px;
+  }
+  .nav.is-open { display: flex; }           /* класс is-open ставит js/main.js */
+  .nav a { padding: 14px 0; border-bottom: 1px solid var(--sand); }
+  .nav .nav__btn { border-bottom: none; }
 }
 @media (max-width: 960px) {
   .hero__inner { flex-direction: column-reverse; }
+  .hero__photo { height: 360px; }
   .hero__text { width: 100%; }
   .hero__title { font-size: 48px; }
   .stats__list { grid-template-columns: repeat(2, 1fr); row-gap: 32px; }
@@ -477,7 +524,13 @@ body {
 }
 @media (max-width: 560px) {
   .header__btn { display: none; }
-  .hero { padding: 40px 0 56px; }
+  .nav .nav__btn { display: flex; margin-top: 16px; padding: 16px; font-size: 16px; }
+  .nav .nav__btn:hover { color: #fff; }     /* иначе при наведении текст стал бы бордовым на бордовом */
+  .hero { padding: 24px 0 56px; }
+  .hero__inner { gap: 24px; }
+  .hero__photo { height: 260px; }
+  .chip { padding: 10px 16px; }             /* кнопки фильтра крупнее, чтобы попадать пальцем */
+  .messengers__btn { padding: 16px 12px; }
   .hero__title { font-size: 38px; }
   .hero__lead { font-size: 17px; }
   .hero__buttons .btn { width: 100%; }
