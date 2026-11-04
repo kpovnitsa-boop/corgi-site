@@ -25,16 +25,23 @@
         <span class="logo__text">ROYAL FOX SMILE</span>
       </a>
 
-      <nav class="nav" aria-label="Основное меню">
+      <nav class="nav" id="site-nav" aria-label="Основное меню">
         <a href="#puppies">Щенки</a>
         <a href="#parents">Родители</a>
         <a href="#about">О нас</a>
         <a href="#reviews">Отзывы</a>
         <a href="#faq">FAQ</a>
         <a href="#contacts">Контакты</a>
+        <!-- Эта кнопка видна только в меню на телефоне, где кнопка в шапке скрыта -->
+        <a href="#contacts" class="btn btn--red nav__btn">Записаться на просмотр</a>
       </nav>
 
       <a href="#contacts" class="btn btn--red header__btn">Записаться на просмотр</a>
+
+      <!-- Бургер: кнопка меню на узких экранах. Открывает и закрывает её js/main.js -->
+      <button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -286,7 +293,7 @@
             <p class="messengers__title">Выберите, где удобнее</p>
             <a class="btn messengers__btn messengers__btn--main" href="https://t.me/ВАШ_ЛОГИН" target="_blank" rel="noopener">Написать в Telegram</a>
             <a class="btn btn--outline messengers__btn" href="ВАША_ССЫЛКА_НА_MAX" target="_blank" rel="noopener">Написать в Max</a>
-            <a class="btn btn--outline messengers__btn" href="tel:+79546984365">Позвонить: +7 9546984365</a>
+            <a class="btn btn--outline messengers__btn" href="tel:+79546984365">Позвонить:&nbsp;<span class="nowrap">+7 9546984365</span></a>
           </div>
 
         </div>
