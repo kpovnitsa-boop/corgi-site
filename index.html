@@ -51,7 +51,7 @@
     <section class="hero">
       <div class="container hero__inner">
         <div class="hero__text">
-          <span class="tag">Питомник вельш-корги пемброк · [Город]</span>
+          <span class="tag">Питомник вельш-корги пемброк<span id="hero-city"></span></span>
           <h1 class="hero__title">Пушистый друг ждёт вас</h1>
           <p class="hero__lead">Растим здоровых и общительных щенков в домашних условиях. Документы РКФ, прививки и поддержка после переезда.</p>
           <div class="hero__buttons">
@@ -71,27 +71,11 @@
     </section>
 
     <!-- ===== ЦИФРЫ ===== -->
-    <!-- Замените значения в квадратных скобках на настоящие -->
+    <!-- Цифры, как и другие блоки ниже, рисует js/main.js из файлов в папке data.
+         Менять их удобнее всего в панели: адрес-сайта/admin/ -->
     <section class="stats" aria-label="Питомник в цифрах">
       <div class="container">
-        <ul class="stats__list">
-          <li class="stats__item">
-            <strong class="stats__number">[XX]</strong>
-            <span class="stats__label">лет с породой</span>
-          </li>
-          <li class="stats__item">
-            <strong class="stats__number">[XXX+]</strong>
-            <span class="stats__label">щенков в семьях</span>
-          </li>
-          <li class="stats__item">
-            <strong class="stats__number">[XX]</strong>
-            <span class="stats__label">титулов</span>
-          </li>
-          <li class="stats__item">
-            <strong class="stats__number">[XX]</strong>
-            <span class="stats__label">городов</span>
-          </li>
-        </ul>
+        <ul class="stats__list" id="stats-list"></ul>
       </div>
     </section>
 
@@ -129,29 +113,7 @@
       <div class="container">
         <h2 class="section__title section--parents__title">Родители</h2>
 
-        <div class="parents">
-
-          <article class="parent">
-            <!-- Когда появится фото, замените этот div на:
-                 <img class="parent__photo" src="images/father.jpg" alt="Вельш-корги [Кличка], папа щенков"> -->
-            <div class="parent__photo parent__photo--empty">Фото</div>
-            <div class="parent__info">
-              <p class="parent__role">ПАПА</p>
-              <h3 class="parent__name">[Кличка по родословной]</h3>
-              <p class="parent__details">[Титулы] · [Тесты здоровья]</p>
-            </div>
-          </article>
-
-          <article class="parent">
-            <div class="parent__photo parent__photo--empty">Фото</div>
-            <div class="parent__info">
-              <p class="parent__role">МАМА</p>
-              <h3 class="parent__name">[Кличка по родословной]</h3>
-              <p class="parent__details">[Титулы] · [Тесты здоровья]</p>
-            </div>
-          </article>
-
-        </div>
+        <div class="parents" id="parents-list"></div>
       </div>
     </section>
 
@@ -159,22 +121,12 @@
     <section class="section section--about" id="about">
       <div class="container about">
 
-        <!-- Когда появятся фото, замените каждый div на img с теми же классами, например:
-             <img class="about__photo about__photo--tall" src="images/about-1.jpg" alt="Заводчик с собаками"> -->
-        <div class="about__photos">
-          <div class="about__photo about__photo--tall about__photo--empty">Заводчик с собаками</div>
-          <div class="about__photo about__photo--empty">Дом / вольер</div>
-          <div class="about__photo about__photo--empty">с [XXXX] года</div>
-        </div>
+        <div class="about__photos" id="about-photos"></div>
 
         <div class="about__text">
-          <h2 class="section__title">Наш подход</h2>
-          <p class="about__lead">[2–3 предложения: как начали, почему корги, как растите и социализируете щенков.]</p>
-          <ul class="about__list">
-            <li>[Пункт преимущества 1]</li>
-            <li>[Пункт преимущества 2]</li>
-            <li>[Пункт преимущества 3]</li>
-          </ul>
+          <h2 class="section__title" id="about-title">Наш подход</h2>
+          <p class="about__lead" id="about-text"></p>
+          <ul class="about__list" id="about-points"></ul>
         </div>
 
       </div>
@@ -185,15 +137,8 @@
       <div class="container">
         <h2 class="section__title section--gallery__title">Жизнь в питомнике</h2>
 
-        <!-- Когда появятся фото, замените каждый div на img с теми же классами, например:
-             <img class="gallery__photo gallery__photo--big" src="images/gallery-1.jpg" alt="Щенки корги играют во дворе"> -->
-        <div class="gallery">
-          <div class="gallery__photo gallery__photo--big gallery__photo--empty">Большое фото</div>
-          <div class="gallery__photo gallery__photo--empty">Фото</div>
-          <div class="gallery__photo gallery__photo--empty">Фото</div>
-          <div class="gallery__photo gallery__photo--empty">Фото</div>
-          <div class="gallery__photo gallery__photo--empty">Фото</div>
-        </div>
+        <!-- Первое фото — большое -->
+        <div class="gallery" id="gallery-list"></div>
       </div>
     </section>
 
@@ -202,39 +147,7 @@
       <div class="container">
         <h2 class="section__title section--reviews__title">Наши выпускники дома</h2>
 
-        <div class="reviews">
-
-          <!-- Карточка отзыва. Чтобы добавить отзыв, скопируйте весь блок article целиком. -->
-          <article class="review">
-            <!-- Когда появится фото, замените этот div на:
-                 <img class="review__photo" src="images/review-1.jpg" alt="Корги [Кличка] в новой семье"> -->
-            <div class="review__photo review__photo--empty">Корги в новой семье</div>
-            <p class="review__text">[Текст отзыва владельца: 2–3 предложения о щенке и питомнике.]</p>
-            <div class="review__author">
-              <p class="review__name">[Имя владельца]</p>
-              <p class="review__place">[Кличка, город]</p>
-            </div>
-          </article>
-
-          <article class="review">
-            <div class="review__photo review__photo--empty">Корги в новой семье</div>
-            <p class="review__text">[Текст отзыва владельца: 2–3 предложения о щенке и питомнике.]</p>
-            <div class="review__author">
-              <p class="review__name">[Имя владельца]</p>
-              <p class="review__place">[Кличка, город]</p>
-            </div>
-          </article>
-
-          <article class="review">
-            <div class="review__photo review__photo--empty">Корги в новой семье</div>
-            <p class="review__text">[Текст отзыва владельца: 2–3 предложения о щенке и питомнике.]</p>
-            <div class="review__author">
-              <p class="review__name">[Имя владельца]</p>
-              <p class="review__place">[Кличка, город]</p>
-            </div>
-          </article>
-
-        </div>
+        <div class="reviews" id="reviews-list"></div>
       </div>
     </section>
 
@@ -246,34 +159,8 @@
           <p class="faq__note">Не нашли ответ? <a href="#contacts">Напишите нам.</a></p>
         </div>
 
-        <!-- details и summary — готовый элемент браузера: открывается по клику без JavaScript.
-             Чтобы добавить вопрос, скопируйте блок details целиком. Ответы замените на настоящие. -->
-        <div class="faq__list">
-          <details class="question">
-            <summary>Сколько стоит щенок? <span class="question__icon" aria-hidden="true">+</span></summary>
-            <p class="question__answer">[Ответ на вопрос]</p>
-          </details>
-
-          <details class="question">
-            <summary>Как забронировать щенка? <span class="question__icon" aria-hidden="true">+</span></summary>
-            <p class="question__answer">[Ответ на вопрос]</p>
-          </details>
-
-          <details class="question">
-            <summary>Во сколько щенок переезжает? <span class="question__icon" aria-hidden="true">+</span></summary>
-            <p class="question__answer">[Ответ на вопрос]</p>
-          </details>
-
-          <details class="question">
-            <summary>Какие документы я получу? <span class="question__icon" aria-hidden="true">+</span></summary>
-            <p class="question__answer">[Ответ на вопрос]</p>
-          </details>
-
-          <details class="question">
-            <summary>Есть ли доставка в другой город? <span class="question__icon" aria-hidden="true">+</span></summary>
-            <p class="question__answer">[Ответ на вопрос]</p>
-          </details>
-        </div>
+        <!-- Вопросы — это details и summary: готовый элемент браузера, открывается по клику -->
+        <div class="faq__list" id="faq-list"></div>
       </div>
     </section>
 
@@ -285,15 +172,15 @@
           <div class="contact__info">
             <h2 class="contact__title">Приезжайте знакомиться</h2>
             <p class="contact__lead">Напишите нам — расскажем о щенках и договоримся о встрече.</p>
-            <p class="contact__line">[Город, район]</p>
+            <p class="contact__line" id="contact-city"></p>
           </div>
 
-          <!-- Замените ВАШ_ЛОГИН и ВАША_ССЫЛКА на настоящие, иначе кнопки не откроют ваш чат -->
+          <!-- Ссылки кнопок подставляет js/main.js из data/contacts.json. Кнопка без данных скрывается -->
           <div class="messengers">
             <p class="messengers__title">Выберите, где удобнее</p>
-            <a class="btn messengers__btn messengers__btn--main" href="https://t.me/ВАШ_ЛОГИН" target="_blank" rel="noopener">Написать в Telegram</a>
-            <a class="btn btn--outline messengers__btn" href="ВАША_ССЫЛКА_НА_MAX" target="_blank" rel="noopener">Написать в Max</a>
-            <a class="btn btn--outline messengers__btn" href="tel:+79546984365">Позвонить:&nbsp;<span class="nowrap">+7 9546984365</span></a>
+            <a class="btn messengers__btn messengers__btn--main" id="contact-telegram" target="_blank" rel="noopener" hidden>Написать в Telegram</a>
+            <a class="btn btn--outline messengers__btn" id="contact-max" target="_blank" rel="noopener" hidden>Написать в Max</a>
+            <a class="btn btn--outline messengers__btn" id="contact-phone" hidden>Позвонить:&nbsp;<span class="nowrap" id="contact-phone-text"></span></a>
           </div>
 
         </div>
@@ -306,7 +193,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <a href="#top" class="footer__logo">ROYAL FOX SMILE</a>
-      <p class="footer__text">Питомник вельш-корги · РКФ · [Соцсети]</p>
+      <p class="footer__text">Питомник вельш-корги · РКФ<span id="footer-socials"></span></p>
       <p class="footer__copy">© 2026</p>
     </div>
   </footer>
