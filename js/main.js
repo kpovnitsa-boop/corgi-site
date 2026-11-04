@@ -1,4 +1,28 @@
-// Здесь «живое» поведение сайта. Дальше добавим меню-бургер.
+// Здесь «живое» поведение сайта: меню-бургер, щенки из файла данных и фильтр.
+
+// ===== МЕНЮ-БУРГЕР =====
+const burger = document.querySelector('.burger');
+const nav = document.querySelector('#site-nav');
+
+function setMenuOpen(isOpen) {
+  nav.classList.toggle('is-open', isOpen);
+  burger.setAttribute('aria-expanded', String(isOpen)); // по этому атрибуту CSS рисует крестик
+  burger.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+}
+
+burger.addEventListener('click', () => {
+  setMenuOpen(!nav.classList.contains('is-open'));
+});
+
+// После выбора пункта меню закрываем его, чтобы оно не закрывало страницу
+nav.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => setMenuOpen(false));
+});
+
+// Клавиша Esc тоже закрывает меню
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') setMenuOpen(false);
+});
 
 // ===== ЩЕНКИ =====
 // Данные щенков лежат в data/puppies.json — их меняют в панели (адрес-сайта/admin/).
