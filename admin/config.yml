@@ -54,7 +54,22 @@ collections:
                 label: Статус
                 widget: select
                 options: [Свободен, Свободна, Забронирован, Забронирована]
-              - { name: photo, label: Фото, widget: image, required: false }
+              - { name: photo, label: Главное фото, widget: image, required: false, hint: "Это фото видно в карточке на главной и первым на странице щенка" }
+              # Поля ниже видны только на странице щенка (кнопка «Подробнее»)
+              - { name: birth, label: Дата рождения, widget: string, required: false, hint: "Например: 12.09.2026" }
+              - { name: class, label: Класс, widget: string, required: false, hint: "Например: pet, breed или show" }
+              - { name: documents, label: Документы, widget: string, required: false, default: "Метрика РКФ, ветпаспорт" }
+              - { name: about, label: О щенке, widget: text, required: false, hint: "Характер, привычки, чему уже приучен, с кем лучше уживётся" }
+              - name: photos
+                label: Ещё фото
+                label_singular: фото
+                widget: list
+                required: false
+                max: 3
+                fields:
+                  - { name: image, label: Фото, widget: image }
+              - { name: video, label: Ссылка на видео, widget: string, required: false, hint: "Например, на VK Видео или Rutube, начинается с https://" }
+              - { name: booking, label: Условия брони, widget: string, required: false, hint: "Например: Бронь по договору, предоплата 10 000 ₽" }
 
   - name: site
     label: Блоки сайта
