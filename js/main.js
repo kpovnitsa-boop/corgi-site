@@ -38,7 +38,11 @@ function createPuppyCard(puppy) {
 
   const top = createElement('div', 'puppy__top');
   top.append(createElement('h3', 'puppy__name', puppy.name));
-  if (puppy.price) top.append(createElement('p', 'puppy__price', `${puppy.price} ₽`));
+  if (puppy.price) {
+    // ₽ добавляем, только если цена написана цифрами, а не словами («по договорённости»)
+    const isNumber = /^[\d\s]+$/.test(puppy.price);
+    top.append(createElement('p', 'puppy__price', isNumber ? `${puppy.price} ₽` : puppy.price));
+  }
 
   const facts = createElement('ul', 'puppy__facts');
   [genderNames[puppy.gender], puppy.color, puppy.age].forEach((fact) => {
