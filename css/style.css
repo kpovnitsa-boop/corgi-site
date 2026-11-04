@@ -387,8 +387,28 @@ body {
   font-weight: 500;
   font-size: 14px;
 }
-.review__text { flex: 1; color: var(--ink-soft); }   /* flex: 1 выравнивает авторов по низу карточек */
-.review__author { display: flex; flex-direction: column; gap: 6px; }
+/* Длинный отзыв показываем первыми 4 строками, остальное — по кнопке «Читать полностью» */
+.review__text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;                    /* сколько строк видно, пока отзыв свёрнут */
+  line-clamp: 4;
+  overflow: hidden;
+  color: var(--ink-soft);
+}
+.review.is-expanded .review__text { display: block; overflow: visible; }   /* класс is-expanded ставит js/main.js */
+.review__more {
+  align-self: flex-start;
+  margin-top: -8px;                         /* кнопка ближе к тексту, к которому относится */
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--red);
+  font-weight: 700;
+  font-size: 15px;
+}
+.review__more:hover { text-decoration: underline; }
+.review__author { display: flex; flex-direction: column; gap: 6px; margin-top: auto; }   /* margin-top: auto прижимает автора к низу карточки */
 .review__name { font-weight: 700; }
 .review__place { font-size: 14px; color: var(--muted); }
 
