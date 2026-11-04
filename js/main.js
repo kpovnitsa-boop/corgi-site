@@ -198,11 +198,39 @@ function renderReviews(data) {
     card.append(
       createPhoto('review__photo', review.photo, review.photo ? `Корги ${review.place || ''} в новой семье` : 'Корги в новой семье'),
       createElement('p', 'review__text', review.text),
+      createReadMoreButton(card),
       author,
     );
     list.append(card);
   });
+  updateReadMoreButtons();
 }
+
+// Кнопка «Читать полностью» раскрывает и сворачивает длинный отзыв
+function createReadMoreButton(card) {
+  const button = createElement('button', 'review__more', 'Читать полностью');
+  button.type = 'button';
+  button.hidden = true; // покажем, только если текст правда не поместился
+  button.setAttribute('aria-expanded', 'false');
+  button.addEventListener('click', () => {
+    const isExpanded = card.classList.toggle('is-expanded');
+    button.textContent = isExpanded ? 'Свернуть' : 'Читать полностью';
+    button.setAttribute('aria-expanded', String(isExpanded));
+  });
+  return button;
+}
+
+// Короткому отзыву кнопка не нужна: сравниваем полную высоту текста с видимой
+function updateReadMoreButtons() {
+  document.querySelectorAll('.review:not(.is-expanded)').forEach((card) => {
+    const text = card.querySelector('.review__text');
+    card.querySelector('.review__more').hidden = text.scrollHeight <= text.clientHeight + 1;
+  });
+}
+
+// Пересчитываем, когда загрузились шрифты и когда меняется ширина окна (например, поворот телефона)
+document.fonts.ready.then(updateReadMoreButtons);
+window.addEventListener('resize', updateReadMoreButtons);
 
 // ===== FAQ =====
 function renderFaq(data) {
