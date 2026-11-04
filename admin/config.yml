@@ -10,8 +10,20 @@ site_url: https://kpovnitsa-boop.github.io/corgi-site/
 display_url: https://kpovnitsa-boop.github.io/corgi-site/
 
 # Куда складываются загруженные фото и какой путь к ним пишется в данные
+# (сайт сам уберёт «/» в начале, чтобы фото нашлось в папке сайта)
 media_folder: images/puppies
-public_folder: images/puppies
+public_folder: /images/puppies
+
+# Фото при загрузке сжимаются и переводятся в WebP прямо в браузере.
+# Так работают и фото с iPhone в формате HEIC, и сайт грузится быстрее
+media_libraries:
+  all:
+    transformations:
+      raster_image:
+        format: webp
+        quality: 85
+        width: 1600
+        height: 1600
 
 collections:
   - name: puppies
@@ -36,7 +48,7 @@ collections:
                   - { label: Девочка, value: girl }
               - { name: color, label: Окрас, widget: string, required: false }
               - { name: age, label: Возраст, widget: string, required: false, hint: "Например: 2 мес." }
-              - { name: price, label: Цена, widget: string, required: false, hint: "Только число, знак ₽ добавится сам" }
+              - { name: price, label: Цена, widget: string, required: false, hint: "Числом, например 80 000 — знак ₽ добавится сам. Можно и словами: по договорённости" }
               - name: status
                 label: Статус
                 widget: select
