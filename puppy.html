@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <!-- Страница одного щенка. Какого именно — подсказывает адрес: puppy.html?n=0 — первый щенок в списке -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Щенок вельш-корги — Royal Fox Smile</title>
+  <meta name="description" content="Щенок вельш-корги пемброк из питомника Royal Fox Smile: фото, характер, родители и цена.">
+
+  <!-- Шрифты из Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Наши стили — те же, что на главной -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== ШАПКА — как на главной, только ссылки ведут на главную страницу ===== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <span class="logo__icon" aria-hidden="true">🐾</span>
+        <span class="logo__text">ROYAL FOX SMILE</span>
+      </a>
+
+      <nav class="nav" id="site-nav" aria-label="Основное меню">
+        <a href="index.html#puppies">Щенки</a>
+        <a href="index.html#parents">Родители</a>
+        <a href="index.html#about">О нас</a>
+        <a href="index.html#reviews">Отзывы</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#contacts">Контакты</a>
+        <a href="index.html#contacts" class="btn btn--red nav__btn">Записаться на просмотр</a>
+      </nav>
+
+      <a href="index.html#contacts" class="btn btn--red header__btn">Записаться на просмотр</a>
+
+      <button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container puppy-page">
+
+    <!-- Хлебные крошки: где мы находимся на сайте -->
+    <nav class="breadcrumbs" aria-label="Вы здесь">
+      <a href="index.html">Главная</a>
+      <span aria-hidden="true">/</span>
+      <a href="index.html#puppies">Щенки</a>
+      <span aria-hidden="true">/</span>
+      <span id="crumb-name">Щенок</span>
+    </nav>
+
+    <!-- Всё ниже заполняет js/puppy.js из data/puppies.json -->
+    <p class="puppy-page__message" id="puppy-message" hidden></p>
+
+    <div class="puppy-page__content" id="puppy-content" hidden>
+
+      <div class="puppy-page__top">
+        <!-- Фото: большое и миниатюры под ним. Клик по миниатюре меняет большое фото -->
+        <div class="puppy-gallery">
+          <div class="puppy-gallery__main" id="puppy-main-photo"></div>
+          <div class="puppy-gallery__thumbs" id="puppy-thumbs"></div>
+        </div>
+
+        <div class="puppy-info">
+          <span class="puppy__status" id="puppy-status" hidden></span>
+          <h1 class="puppy-info__name" id="puppy-name"></h1>
+          <dl class="puppy-info__specs" id="puppy-specs"></dl>
+          <p class="puppy-info__price" id="puppy-price" hidden></p>
+          <div class="puppy-info__buttons">
+            <a href="index.html#contacts" class="btn btn--red">Забронировать</a>
+            <a href="index.html#contacts" class="btn btn--outline">Задать вопрос</a>
+          </div>
+          <p class="puppy-info__note" id="puppy-booking" hidden></p>
+        </div>
+      </div>
+
+      <section class="puppy-page__block" id="puppy-about-block" hidden>
+        <h2 class="puppy-page__title">О щенке</h2>
+        <p class="puppy-page__text" id="puppy-about"></p>
+      </section>
+
+      <section class="puppy-page__block">
+        <h2 class="puppy-page__title">Родители</h2>
+        <div class="parents parents--compact" id="puppy-parents"></div>
+      </section>
+
+      <section class="puppy-page__block" id="puppy-others-block" hidden>
+        <h2 class="puppy-page__title">Другие щенки</h2>
+        <div class="puppies" id="puppy-others"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===== ПОДВАЛ ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="index.html" class="footer__logo">ROYAL FOX SMILE</a>
+      <p class="footer__text">Питомник вельш-корги · РКФ<span id="footer-socials"></span></p>
+      <p class="footer__copy">© 2026</p>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/puppy.js"></script>
+</body>
+</html>
