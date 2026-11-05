@@ -102,3 +102,26 @@ function createPuppyCard(puppy, index) {
   card.append(body);
   return card;
 }
+
+// ===== ФИЛЬТР ЩЕНКОВ: «Все», «Мальчики», «Девочки» =====
+// list — блок с карточками, которые нужно прятать и показывать
+function setupPuppyFilter(list) {
+  const filterButtons = document.querySelectorAll('.chip[data-filter]');
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter; // all, boy или girl
+
+      // Подсвечиваем нажатую кнопку, с остальных подсветку снимаем
+      filterButtons.forEach((other) => {
+        other.classList.toggle('is-active', other === button);
+        other.setAttribute('aria-pressed', String(other === button));
+      });
+
+      // Карточки ищем в момент клика: они появляются после загрузки данных
+      list.querySelectorAll('.puppy').forEach((card) => {
+        card.hidden = filter !== 'all' && card.dataset.gender !== filter;
+      });
+    });
+  });
+}

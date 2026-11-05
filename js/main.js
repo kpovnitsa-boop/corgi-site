@@ -68,7 +68,8 @@ function renderPuppies(data) {
     puppiesMessage.hidden = false;
     return;
   }
-  puppies.forEach((puppy, index) => puppiesList.append(createPuppyCard(puppy, index)));
+  // На главной показываем первых трёх щенков, остальные — на странице «Все щенки» (puppies.html)
+  puppies.slice(0, 3).forEach((puppy, index) => puppiesList.append(createPuppyCard(puppy, index)));
 }
 
 // ===== РОДИТЕЛИ =====
@@ -194,22 +195,5 @@ Object.entries(blocks).forEach(([name, render]) => {
     });
 });
 
-// ===== ФИЛЬТР ЩЕНКОВ =====
-const filterButtons = document.querySelectorAll('.chip[data-filter]');
-
-filterButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const filter = button.dataset.filter; // all, boy или girl
-
-    // Подсвечиваем нажатую кнопку, с остальных подсветку снимаем
-    filterButtons.forEach((other) => {
-      other.classList.toggle('is-active', other === button);
-      other.setAttribute('aria-pressed', String(other === button));
-    });
-
-    // Карточки ищем в момент клика: они появляются после загрузки данных
-    puppiesList.querySelectorAll('.puppy').forEach((card) => {
-      card.hidden = filter !== 'all' && card.dataset.gender !== filter;
-    });
-  });
-});
+// ===== ФИЛЬТР ЩЕНКОВ — сам код в common.js, он общий со страницей puppies.html =====
+setupPuppyFilter(puppiesList);
