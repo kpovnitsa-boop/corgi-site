@@ -3,12 +3,7 @@
 
 // ===== КОНТАКТЫ =====
 function renderContacts(data) {
-  const city = data.city || '';
-  // На первом экране — только город, без района (то, что до запятой)
-  let heroCity = city.split(',')[0].trim();
-  if (heroCity.startsWith('[') && !heroCity.endsWith(']')) heroCity += ']'; // чтобы заглушка «[Город, район]» выглядела аккуратно
-  document.querySelector('#hero-city').textContent = heroCity ? ` · ${heroCity}` : '';
-  document.querySelector('#contact-city').textContent = city;
+  document.querySelector('#contact-city').textContent = data.city || '';
   renderFooter(data);
 
   // Telegram: принимаем «name», «@name» или ссылку https://t.me/name
