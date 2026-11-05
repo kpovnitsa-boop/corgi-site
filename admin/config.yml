@@ -81,7 +81,7 @@ collections:
           - { name: telegram, label: Telegram, widget: string, required: false, hint: "Логин без @, например royalfoxsmile. Пусто — кнопка скрыта" }
           - { name: max, label: Max, widget: string, required: false, hint: "Полная ссылка на профиль или чат, начинается с https://. Пусто — кнопка скрыта" }
           - { name: phone, label: Телефон, widget: string, required: false, hint: "Как показывать на сайте, например +7 900 000-00-00. Пусто — кнопка скрыта" }
-          - { name: city, label: "Город, район", widget: string, required: false, hint: "Город до запятой покажется и на первом экране" }
+          - { name: city, label: "Город, район", widget: string, required: false, hint: "Показывается в блоке контактов" }
           - { name: socials, label: Соцсети в подвале, widget: string, required: false, hint: "Например: VK · Telegram-канал" }
 
       - name: stats
