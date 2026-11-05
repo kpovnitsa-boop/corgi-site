@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <!-- Страница «Все щенки»: здесь все щенки из панели, а на главной — только первые три -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Все щенки — Royal Fox Smile</title>
+  <meta name="description" content="Щенки вельш-корги пемброк из питомника Royal Fox Smile: фото, окрас, возраст и цены.">
+
+  <!-- Шрифты из Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Наши стили — те же, что на главной. ?v= — номер версии, как на главной -->
+  <link rel="stylesheet" href="css/style.css?v=2026-11-05-5">
+</head>
+<body>
+
+  <!-- ===== ШАПКА — как на главной, только ссылки ведут на главную страницу ===== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <span class="logo__icon" aria-hidden="true">🐾</span>
+        <span class="logo__text">ROYAL FOX SMILE</span>
+      </a>
+
+      <nav class="nav" id="site-nav" aria-label="Основное меню">
+        <a href="puppies.html">Щенки</a>
+        <a href="index.html#parents">Родители</a>
+        <a href="index.html#about">О нас</a>
+        <a href="index.html#reviews">Отзывы</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#contacts">Контакты</a>
+        <a href="index.html#contacts" class="btn btn--red nav__btn">Записаться на просмотр</a>
+      </nav>
+
+      <a href="index.html#contacts" class="btn btn--red header__btn">Записаться на просмотр</a>
+
+      <button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container puppy-page">
+
+    <nav class="breadcrumbs" aria-label="Вы здесь">
+      <a href="index.html">Главная</a>
+      <span aria-hidden="true">/</span>
+      <span>Щенки</span>
+    </nav>
+
+    <div>
+      <div class="section__top">
+        <div class="section__head">
+          <p class="section__label">НАШИ МАЛЫШИ</p>
+          <h1 class="section__title">Все щенки</h1>
+        </div>
+
+        <div class="filter" aria-label="Показать щенков">
+          <button type="button" class="chip is-active" data-filter="all" aria-pressed="true">Все</button>
+          <button type="button" class="chip" data-filter="boy" aria-pressed="false">Мальчики</button>
+          <button type="button" class="chip" data-filter="girl" aria-pressed="false">Девочки</button>
+        </div>
+      </div>
+
+      <!-- Карточки рисует js/puppies.js из файла data/puppies.json -->
+      <div class="puppies" id="puppies-list"></div>
+      <p class="puppies__message" id="puppies-message" hidden></p>
+    </div>
+
+  </main>
+
+  <!-- ===== ПОДВАЛ ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="index.html" class="footer__logo">ROYAL FOX SMILE</a>
+      <p class="footer__text">Питомник вельш-корги · РКФ<span id="footer-socials"></span></p>
+      <p class="footer__copy">© 2026</p>
+    </div>
+  </footer>
+
+  <script src="js/common.js?v=2026-11-05-5"></script>
+  <script src="js/puppies.js?v=2026-11-05-5"></script>
+</body>
+</html>
