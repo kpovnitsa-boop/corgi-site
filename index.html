@@ -14,7 +14,7 @@
 
   <!-- Наши стили. ?v= — номер версии: после изменения стилей или скриптов его меняют на новый
        во всех ссылках на обеих страницах, и браузер сразу скачивает свежие файлы, а не старую копию -->
-  <link rel="stylesheet" href="css/style.css?v=2026-11-05-3">
+  <link rel="stylesheet" href="css/style.css?v=2026-11-05-4">
 </head>
 <body>
 
@@ -50,6 +50,13 @@
 
     <!-- ===== ПЕРВЫЙ ЭКРАН ===== -->
     <section class="hero">
+      <!-- Следы лап, которые «идут» по низу первого экрана. Только украшение, поэтому aria-hidden -->
+      <div class="hero__trail" aria-hidden="true">
+        <span style="--i: 0"></span><span style="--i: 1"></span><span style="--i: 2"></span><span style="--i: 3"></span>
+        <span style="--i: 4"></span><span style="--i: 5"></span><span style="--i: 6"></span><span style="--i: 7"></span>
+        <span style="--i: 8"></span><span style="--i: 9"></span><span style="--i: 10"></span><span style="--i: 11"></span>
+      </div>
+
       <div class="container hero__inner">
         <div class="hero__text">
           <h1 class="hero__title">Пушистый друг ждёт вас</h1>
@@ -65,8 +72,9 @@
           </ul>
         </div>
 
-        <!-- Фото корги: положите файл в папку images и назовите corgi.png -->
-        <img class="hero__photo" src="images/corgi.png" alt="Щенок вельш-корги пемброк">
+        <!-- Фото корги: положите файл в папку images и назовите corgi.png.
+             Корги появляется с прыжком, иногда наклоняет голову, а по клику подпрыгивает (js/main.js) -->
+        <img class="hero__photo" src="images/corgi.png" alt="Щенок вельш-корги пемброк" title="Погладьте меня!">
       </div>
     </section>
 
@@ -198,7 +206,7 @@
     </div>
   </footer>
 
-  <script src="js/common.js?v=2026-11-05-3"></script>
-  <script src="js/main.js?v=2026-11-05-3"></script>
+  <script src="js/common.js?v=2026-11-05-4"></script>
+  <script src="js/main.js?v=2026-11-05-4"></script>
 </body>
 </html>
