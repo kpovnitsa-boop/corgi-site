@@ -150,8 +150,10 @@ body {
 /* =========================================================
    5. ПЕРВЫЙ ЭКРАН
    ========================================================= */
-.hero { background: var(--sand); padding: 80px 0; }
+.hero { position: relative; overflow: hidden; background: var(--sand); padding: 80px 0; }
 .hero__inner {
+  position: relative;                       /* текст и корги поверх следов лап */
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 56px;
@@ -188,6 +190,62 @@ body {
   max-width: 100%;
   height: 520px;
   object-fit: contain;
+  cursor: pointer;
+  transform-origin: 50% 90%;                /* корги наклоняется «от лап», а не от середины */
+  /* Сначала появляется с прыжком, потом раз в несколько секунд наклоняет голову */
+  animation: corgi-in .9s cubic-bezier(.34, 1.56, .64, 1) both,
+             corgi-tilt 6s ease-in-out 1.5s infinite;
+}
+/* Классы ставит js/main.js: is-ready — после появления (чтобы прыжок появления не повторялся), is-jumping — по клику */
+.hero__photo.is-ready { animation: corgi-tilt 6s ease-in-out 1s infinite; }
+.hero__photo.is-jumping { animation: corgi-jump .7s ease-out; }
+
+@keyframes corgi-in {
+  from { opacity: 0; transform: translateY(60px) scale(.9); }
+  to   { opacity: 1; transform: none; }
+}
+/* Большую часть времени корги стоит спокойно, а в конце цикла наклоняет голову туда-сюда */
+@keyframes corgi-tilt {
+  0%, 70%, 100% { transform: none; }
+  76% { transform: rotate(-5deg) translateY(-4px); }
+  84% { transform: rotate(4deg); }
+  92% { transform: rotate(-2deg); }
+}
+@keyframes corgi-jump {
+  0%   { transform: none; }
+  30%  { transform: translateY(-40px) scale(1.03); }
+  55%  { transform: translateY(0) scaleY(.94); }
+  75%  { transform: translateY(-10px); }
+  100% { transform: none; }
+}
+
+/* Следы лап по низу экрана: по одному появляются слева направо и тают */
+.hero__trail { position: absolute; left: 0; right: 0; bottom: 12px; height: 40px; pointer-events: none; }
+.hero__trail span {
+  position: absolute;
+  left: calc(4% + var(--i) * 8%);           /* шаги через равные промежутки */
+  bottom: 0;
+  width: 22px;
+  height: 22px;
+  background-color: var(--red);
+  -webkit-mask: var(--paw) center / contain no-repeat;
+  mask: var(--paw) center / contain no-repeat;
+  opacity: 0;
+  transform: rotate(90deg);                 /* пальчики смотрят вправо — по направлению шагов */
+  animation: paw-step 6s linear calc(var(--i) * .4s) infinite;
+}
+.hero__trail span:nth-child(even) { bottom: 16px; }   /* левая и правая лапа — со сдвигом, как настоящий след */
+@keyframes paw-step {
+  0%   { opacity: 0; }
+  5%   { opacity: .18; }
+  45%  { opacity: .18; }
+  60%, 100% { opacity: 0; }
+}
+
+/* Если человек в настройках системы попросил меньше движения — анимации выключаем */
+@media (prefers-reduced-motion: reduce) {
+  .hero__photo, .hero__photo.is-ready, .hero__photo.is-jumping { animation: none; }
+  .hero__trail { display: none; }
 }
 
 /* =========================================================
