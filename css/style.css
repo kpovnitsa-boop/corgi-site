@@ -184,11 +184,12 @@ body {
   display: flex;
   flex-wrap: wrap;                          /* если цифры не влезают в ряд, переносятся на следующую строку */
   justify-content: center;                  /* цифры стоят по центру полосы, сколько бы их ни было */
-  gap: 32px 120px;                          /* 32px между строками, 120px между цифрами */
+  gap: 32px 40px;                           /* 32px между строками, 40px между цифрами */
 }
-.stats__item { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
-.stats__number { font-weight: 800; font-size: 44px; line-height: 60px; color: var(--orange); }
-.stats__label { font-size: 16px; }
+/* Все цифры одной ширины — так средняя стоит ровно по центру, даже если подписи разной длины */
+.stats__item { flex: 0 0 280px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.stats__number { font-weight: 800; font-size: 64px; line-height: 1.1; color: var(--orange); }
+.stats__label { font-size: 20px; }
 
 /* =========================================================
    7. ОБЩЕЕ ДЛЯ БЛОКОВ — отступы и заголовки секций
@@ -617,7 +618,10 @@ body {
   .hero__photo { height: 360px; }
   .hero__text { width: 100%; }
   .hero__title { font-size: 48px; }
-  .stats__list { gap: 32px 56px; }
+  .stats__list { gap: 32px 24px; }
+  .stats__item { flex-basis: 200px; }
+  .stats__number { font-size: 52px; }
+  .stats__label { font-size: 18px; }
   .puppies { grid-template-columns: repeat(2, 1fr); }
   .section--puppies { padding: 72px 0; }
   .section__title { font-size: 36px; line-height: 1.2; }
@@ -647,7 +651,9 @@ body {
   .hero__lead { font-size: 17px; }
   .hero__buttons .btn { width: 100%; }
   .stats { padding: 40px 0; }
-  .stats__number { font-size: 34px; }
+  .stats__item { flex-basis: 140px; }
+  .stats__number { font-size: 44px; }
+  .stats__label { font-size: 16px; }
   .puppies { grid-template-columns: 1fr; }
   .section--puppies { padding: 56px 0; }
   .section__title { font-size: 30px; }
