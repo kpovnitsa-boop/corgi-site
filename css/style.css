@@ -181,10 +181,12 @@ body {
    ========================================================= */
 .stats { background: var(--red); color: var(--cream); padding: 56px 0; }
 .stats__list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);    /* 4 равные колонки */
+  display: flex;
+  flex-wrap: wrap;                          /* если цифры не влезают в ряд, переносятся на следующую строку */
+  justify-content: center;                  /* цифры стоят по центру полосы, сколько бы их ни было */
+  gap: 32px 120px;                          /* 32px между строками, 120px между цифрами */
 }
-.stats__item { display: flex; flex-direction: column; gap: 6px; }
+.stats__item { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
 .stats__number { font-weight: 800; font-size: 44px; line-height: 60px; color: var(--orange); }
 .stats__label { font-size: 16px; }
 
@@ -615,7 +617,7 @@ body {
   .hero__photo { height: 360px; }
   .hero__text { width: 100%; }
   .hero__title { font-size: 48px; }
-  .stats__list { grid-template-columns: repeat(2, 1fr); row-gap: 32px; }
+  .stats__list { gap: 32px 56px; }
   .puppies { grid-template-columns: repeat(2, 1fr); }
   .section--puppies { padding: 72px 0; }
   .section__title { font-size: 36px; line-height: 1.2; }
