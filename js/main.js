@@ -1,6 +1,21 @@
 // Код главной страницы: блоки из файлов данных, фильтр щенков и раскрытие отзывов.
 // Меню, помощники и карточка щенка лежат в common.js — он подключается раньше.
 
+// ===== КОРГИ НА ПЕРВОМ ЭКРАНЕ: подпрыгивает по клику =====
+const heroCorgi = document.querySelector('.hero__photo');
+
+heroCorgi.addEventListener('click', () => {
+  heroCorgi.classList.remove('is-jumping');
+  void heroCorgi.offsetWidth; // «перезапуск» анимации, чтобы корги прыгал при каждом клике
+  heroCorgi.classList.add('is-jumping');
+});
+
+// После появления и после каждого прыжка корги переходит к спокойной анимации с наклоном головы
+heroCorgi.addEventListener('animationend', (event) => {
+  if (event.animationName === 'corgi-in') heroCorgi.classList.add('is-ready');
+  if (event.animationName === 'corgi-jump') heroCorgi.classList.remove('is-jumping');
+});
+
 // ===== КОНТАКТЫ =====
 function renderContacts(data) {
   document.querySelector('#contact-city').textContent = data.city || '';
